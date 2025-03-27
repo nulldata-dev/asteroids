@@ -5,6 +5,8 @@ environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 import pygame
 #import all constant values from constants.py
 from constants import *
+#import circleshape.py
+from circleshape import CircleShape
 
 def main():
     #initialize all the pygame modules
@@ -16,7 +18,7 @@ def main():
     #delta variable
     dt = 0
     #game loop
-    while(True):
+    while True :
         #check if the window is being close, exits the program if so
         for event in pygame.event.get(): #gets all the events from the queue
             if event.type == pygame.QUIT: #pygame.QUIT means the user hit the 'X' on the game window
