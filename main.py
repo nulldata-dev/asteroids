@@ -7,6 +7,8 @@ import pygame
 from constants import *
 #import circleshape.py
 from circleshape import CircleShape
+#import Player
+from player import Player
 
 def main():
     #initialize all the pygame modules
@@ -17,14 +19,20 @@ def main():
     game_clock = pygame.time.Clock()
     #delta variable
     dt = 0
+    #construct the player
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT/2)
     #game loop
     while True :
         #check if the window is being close, exits the program if so
         for event in pygame.event.get(): #gets all the events from the queue
             if event.type == pygame.QUIT: #pygame.QUIT means the user hit the 'X' on the game window
                 return
+        
         #fill the surface with a solid color, in this case black
         screen.fill((0, 0, 0))
+        #draw the player
+        player.draw(screen)
+
         #refresh/update the display
         pygame.display.flip()
         #wait for 1/60th of a second, aka 1 frame at 60fps
