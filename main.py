@@ -47,9 +47,12 @@ def main():
 
         #check for collisions
         for asteroid in asteroids:
-            if asteroid.collision(player):
-                print("Game Over!")
-                return
+            for shot in shots:
+                if asteroid.collision(shot) and asteroid.collided == False and shot.collided == False:
+                    asteroid.collided = True
+                    shot.collided = True
+            if asteroid.collision(player) and asteroid.collided == False:
+                player.collided = True
 
         #fill the surface with a solid color, in this case black
         screen.fill((0, 0, 0))
@@ -59,6 +62,13 @@ def main():
 
         #refresh/update the display
         pygame.display.flip()
+
+        for object in drawable:
+            if object.collided == True:
+                object.kill()
+        if player.collided == True:
+            print("Game Over!")
+            return
 
         #wait for 1/60th of a second, aka 1 frame at 60fps
         #save the ammount of time since last frame, divide by 1000 to convert from millis to sec
