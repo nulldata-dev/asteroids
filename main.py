@@ -43,6 +43,12 @@ def main():
         #update all updatables, this is where keyboard input is processed
         updatable.update(dt)
 
+        #check for collisions
+        for asteroid in asteroids:
+            if asteroid.collision(player):
+                print("Game Over!")
+                return
+
         #fill the surface with a solid color, in this case black
         screen.fill((0, 0, 0))
         #draw drawables i.e. player
