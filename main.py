@@ -30,6 +30,8 @@ def main():
         
         #fill the surface with a solid color, in this case black
         screen.fill((0, 0, 0))
+        #take keyboard input
+        player.update(dt)
         #draw the player
         player.draw(screen)
 
