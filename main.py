@@ -19,6 +19,10 @@ def main():
     game_clock = pygame.time.Clock()
     #delta variable
     dt = 0
+    #grouping
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
     #construct the player
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT/2)
     #game loop
@@ -28,15 +32,18 @@ def main():
             if event.type == pygame.QUIT: #pygame.QUIT means the user hit the 'X' on the game window
                 return
         
+        #update all updatables, this is where keyboard input is processed
+        updatable.update(dt)
+
         #fill the surface with a solid color, in this case black
         screen.fill((0, 0, 0))
-        #take keyboard input
-        player.update(dt)
-        #draw the player
-        player.draw(screen)
+        #draw drawables i.e. player
+        for item in drawable:
+            item.draw(screen)
 
         #refresh/update the display
         pygame.display.flip()
+        
         #wait for 1/60th of a second, aka 1 frame at 60fps
         #save the ammount of time since last frame, divide by 1000 to convert from millis to sec
         dt = (game_clock.tick(60) / 1000)
