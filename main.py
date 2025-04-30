@@ -9,6 +9,8 @@ from constants import *
 from circleshape import CircleShape
 #import Player
 from player import Player
+#import Asteroid
+from asteroid import Asteroid
 
 def main():
     #initialize all the pygame modules
@@ -20,8 +22,10 @@ def main():
     #delta variable
     dt = 0
     #grouping
+    asteroids = pygame.sprite.Group()
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    Asteroid.containers = (asteroids, updatable, drawable)
     Player.containers = (updatable, drawable)
     #construct the player
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT/2)
@@ -43,7 +47,7 @@ def main():
 
         #refresh/update the display
         pygame.display.flip()
-        
+
         #wait for 1/60th of a second, aka 1 frame at 60fps
         #save the ammount of time since last frame, divide by 1000 to convert from millis to sec
         dt = (game_clock.tick(60) / 1000)
