@@ -49,7 +49,7 @@ def main():
         for asteroid in asteroids:
             for shot in shots:
                 if asteroid.collision(shot) and asteroid.collided == False and shot.collided == False:
-                    asteroid.collided = True
+                    asteroid.split()
                     shot.collided = True
             if asteroid.collision(player) and asteroid.collided == False:
                 player.collided = True
